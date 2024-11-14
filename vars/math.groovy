@@ -1,19 +1,15 @@
-def sum(a,b)
-{
-  echo "The sum of ${a} and ${b} is ${a+b}"
+def sum(int a, int b) {
+    return a + b
 }
 
-def sub(a,b)
-{
-  echo "The substarction of ${a} and ${b} is ${a-b}"
+def sub(int a, int b) {
+    return a - b
 }
 
-def mul(a,b)
-{
-  echo "The product of ${a} and ${b} is ${a*b}"
+def mul(int a, int b) {
+    return a * b
 }
 
-def div(a,b)
-{
-  echo "The division of ${a} and ${b} is ${a/b}"
+def div(int a, int b) {
+    return a / b
 }
