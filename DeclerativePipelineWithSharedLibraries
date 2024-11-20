@@ -1,0 +1,59 @@
+@Library('library')_
+pipeline
+{
+    agent any
+    stages
+    {
+        stage('ContinuousDownload')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.Download("maven-demo-project")
+                }
+            }
+        }
+        stage('ContinuousBuild')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.Build()
+                }
+            }
+        }
+        stage('ContinuousDeploy')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.Deploy("DeclerativePipelineWithSharedLibraries","172.31.16.55","TestingApp")
+                }
+            }
+        }
+        stage('ContinuousTesting')
+        {
+            steps
+            {
+                script
+                {
+                    cicd.Download("Functional-Testing")
+                    cicd.RunTestcases("DeclerativePipelineWithSharedLibraries")
+                }
+            }
+        }
+        stage('ContinuousDelivery')
+        {
+            steps
+            {
+                script
+                {
+                   cicd.Deploy("DeclerativePipelineWithSharedLibraries","172.31.17.231","ProdApp")
+                }
+            }
+        }
+    }
+}
