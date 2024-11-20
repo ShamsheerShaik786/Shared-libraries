@@ -1,0 +1,25 @@
+@Library('library')_
+node('built-in')
+{
+    stage('ContinuousDownload')
+    {
+        cicd.Download("maven-demo-project")
+    }
+    stage('ContinuousBuild')
+    {
+        cicd.Build()
+    }
+    stage('ContinuousDeploy')
+    {
+        cicd.Deploy("DeclerativePipelineWithSharedLibraries","172.31.16.55","TestingApp")
+    }
+    stage('ContinuousTesting')
+    {
+        cicd.Download("Functional-Testing")
+        cicd.RunTestcases("DeclerativePipelineWithSharedLibraries")
+    }
+    stage('ContinuousDelivery')
+    {
+        cicd.Deploy("DeclerativePipelineWithSharedLibraries","172.31.17.231","ProdApp")
+    }
+}
